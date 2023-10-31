@@ -1,6 +1,6 @@
-#Below is a list of plugins and some information
+# Below is a list of plugins and some information
 
-##Persistence: Retro Edition
+## Persistence: Retro Edition
 Disregarding the cheesy name, this plugin replaces Helix's persistence plugin, with GMOD's persistence system.
 !This system was replaced by the plugin early on, due to reported lag. I don't know if this is still the case in 2023, so use at your own risk!
 
