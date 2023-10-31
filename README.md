@@ -1,7 +1,7 @@
 # Plugins, their functions and installation
 
 ## Persistence: Retro Edition
-Disregarding the cheesy name, this plugin replaces Helix's persistence plugin, with GMOD's persistence system.
+Disregarding the cheesy name, this plugin replaces Helix's persistence plugin with GMOD's persistence system. Why? The built-in system uses the duplicator's saving and loading functions, as such more entities can be saved and even constraints (ropes, welds) can be saved.
 
 ### GMOD's persistence system was replaced by Helix's system early on, due to reported lag. I don't know if this is still the case in 2023, so use at your own risk!
 
