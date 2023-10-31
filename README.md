@@ -9,4 +9,4 @@ Disregarding the cheesy name, this plugin replaces Helix's persistence plugin wi
 
 This plugin also includes a transfer command, to transfer saved props from Helix's persistence plugin to GMod's persistence system. Simply enter "ix_persistenceTransfer" into the server console and follow the prompts. **In order for this to work correctly, there mustn't be any props loaded from the old persistent system. Ensure the original persistence plugin is unloaded and none of its props are on the map, while executing this command!**
 
-Upon installation into your schema plugins folder, this plugin will disable the original persistence plugin. **Ensure that the plugin is fully unloaded**, by restarting the server on first install.
+Upon installation into your schema plugins folder, this plugin will disable Helix's persistence plugin. **Ensure that Helix's persistence plugin is fully unloaded**, by restarting the server on first install.
