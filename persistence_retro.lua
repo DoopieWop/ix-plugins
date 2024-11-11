@@ -6,6 +6,27 @@ PLUGIN.author = "DoopieWop"
 ix.plugin.SetUnloaded("persistence", true)
 
 if SERVER then
+	cvars.AddChangeCallback("sbox_persist", function(name, old, new)
+		-- A timer in case someone tries to rapily change the convar, such as addons with "live typing" or whatever
+		timer.Create("sbox_persist_change_timer", 2, 1, function()
+			hook.Run("PersistenceSave", old)
+	
+			if (new == "") then
+				return
+			end
+	
+			-- stand in for game.CleanUpMap
+			-- without this, you will have duplication
+			for k, v in ents.Iterator() do
+				if v:GetPersistent() then
+					v:Remove()
+				end
+			end
+	
+			hook.Run("PersistenceLoad", new)
+		end)
+	end, "sbox_persist_load")
+	
 	PLUGIN.transferComplete = PLUGIN.transferComplete or false
 	PLUGIN.acknowledgedWarning = PLUGIN.acknowledgedWarning or false
 
