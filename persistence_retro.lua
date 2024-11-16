@@ -133,7 +133,7 @@ properties.Add( "persist", {
 
 	Filter = function( self, ent, ply )
 
-		if ( ent:IsPlayer() or ent.bNoPersist ) then return false end
+		if ( ent:IsPlayer() or ent:CreatedByMap() or ent.bNoPersist ) then return false end
 		if ( GetConVarString( "sbox_persist" ):Trim() == "" ) then return false end
 		if ( !gamemode.Call( "CanProperty", ply, "persist", ent ) ) then return false end
 
@@ -159,8 +159,8 @@ properties.Add( "persist", {
 		-- TODO: Start some kind of animation, take 5 seconds to make something persistent
 
 		ent:SetPersistent( true )
-		--ent:EnableMotion( false )
 
+		ix.log.Add(client, "persist", GetRealModel(entity), true)
 	end
 
 } )
@@ -199,6 +199,7 @@ properties.Add( "persist_end", {
 
 		ent:SetPersistent( false )
 
+		ix.log.Add(client, "persist", GetRealModel(entity), false)
 	end
 
 } )
