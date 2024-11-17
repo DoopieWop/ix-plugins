@@ -126,6 +126,10 @@ if SERVER then
 	"Spawns saved props from the old persistence plugin and then persists them with the new one. Can only be called on fresh server start (no persistet props from the old plugin)")
 end
 
+local function GetRealModel(entity)
+	return entity:GetClass() == "prop_effect" and entity.AttachedEntity:GetModel() or entity:GetModel()
+end
+
 properties.Add( "persist", {
 	MenuLabel = "#makepersistent",
 	Order = 400,
@@ -134,8 +138,10 @@ properties.Add( "persist", {
 	Filter = function( self, ent, ply )
 
 		if ( ent:IsPlayer() or ent:CreatedByMap() or ent.bNoPersist ) then return false end
-		if ( GetConVarString( "sbox_persist" ):Trim() == "" ) then return false end
 		if ( !gamemode.Call( "CanProperty", ply, "persist", ent ) ) then return false end
+		if SERVER then
+			if ( GetConVarString( "sbox_persist" ):Trim() == "" ) then return false end
+		end
 
 		return !ent:GetPersistent()
 
@@ -173,8 +179,10 @@ properties.Add( "persist_end", {
 	Filter = function( self, ent, ply )
 
 		if ( ent:IsPlayer() ) then return false end
-		if ( GetConVarString( "sbox_persist" ):Trim() == "" ) then return false end
 		if ( !gamemode.Call( "CanProperty", ply, "persist", ent ) ) then return false end
+		if SERVER then
+			if ( GetConVarString( "sbox_persist" ):Trim() == "" ) then return false end
+		end
 
 		return ent:GetPersistent()
 
